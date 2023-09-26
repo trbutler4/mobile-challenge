@@ -2,8 +2,8 @@ import { Buffer } from 'buffer';
 import EC from 'elliptic-expo/lib/elliptic/ec';
 import { StatusBar } from 'expo-status-bar';
 import { keccak256 } from 'js-sha3';
-import { StyleSheet, Text, View, Pressable, Button} from 'react-native';
-import { Link } from 'expo-router';
+import { StyleSheet, Text, View } from 'react-native';
+import NavButton from '../components/NavButton';
 
 const ec = new EC('secp256k1');
 
@@ -30,9 +30,8 @@ export default function App() {
       <Text>Welcome to the Tholos Mobile Challenge!</Text>
       <Text>{pub}</Text>
       <StatusBar style="auto" />
-      <Link href="/wallet">
-        Create Wallet
-      </Link>
+      <NavButton title="Create Wallet" href="/wallet" />
+      <NavButton title="Sign Message" href="/signing" />
     </View>
   );
 }
