@@ -4,11 +4,13 @@ import { StatusBar } from 'expo-status-bar';
 import { keccak256 } from 'js-sha3';
 import { StyleSheet, Text, View } from 'react-native';
 const ec = new EC('secp256k1');
+
 //Generate a new key pair
 const keyPair = ec.genKeyPair();
 
+// NOTE: this is breaking the app -- why is this needed?
 //Load a key pair from a hex string
-const keyPair2 = ec.keyPair({ pub: "123123", pubEnc: "hex", priv: "123123", privEnc: "hex" });
+//const keyPair2 = ec.keyPair({ pub: "123123", pubEnc: "hex", priv: "123123", privEnc: "hex" });
 
 // Get a public key
 const pubPoint = keyPair.getPublic();
