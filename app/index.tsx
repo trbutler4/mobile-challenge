@@ -2,7 +2,7 @@ import { Buffer } from 'buffer';
 import EC from 'elliptic-expo/lib/elliptic/ec';
 import { StatusBar } from 'expo-status-bar';
 import { keccak256 } from 'js-sha3';
-import { StyleSheet, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import NavButton from '../components/NavButton';
 
 const ec = new EC('secp256k1');
@@ -26,7 +26,7 @@ const keccak = keccak256.hex("0x123123123");
 
 export default function App() {
   return (
-    <View style={styles.container}>
+    <View className="flex items-center justify-center">
       <Text>Welcome to the Tholos Mobile Challenge!</Text>
       <Text>{pub}</Text>
       <StatusBar style="auto" />
@@ -36,11 +36,3 @@ export default function App() {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

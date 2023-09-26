@@ -10,7 +10,7 @@ export default function NavButton(props: NavButtonProps) {
     return (
         <>
         <Link href={props.href} asChild>
-            <Button title={props.title}></Button>
+            <Button title={props.title} />
         </Link>
         </>
     )
