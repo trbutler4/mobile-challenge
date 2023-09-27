@@ -22,6 +22,9 @@ export default function SigningPage() {
                         numberOfLines={5}
                         textAlignVertical="top"
                         scrollEnabled
+                        returnKeyType="done"
+                        onSubmitEditing={() => Keyboard.dismiss()}
+                        blurOnSubmit
                     />
                     <NavButton title="Sign" href="/signature" />
                 </View>
