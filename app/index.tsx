@@ -26,12 +26,18 @@ const keccak = keccak256.hex("0x123123123");
 
 export default function App() {
   return (
-    <View className="flex items-center justify-center">
-      <Text>Welcome to the Tholos Mobile Challenge!</Text>
-      <Text>{pub}</Text>
-      <StatusBar style="auto" />
-      <NavButton title="Create Wallet" href="/wallet" />
-      <NavButton title="Sign Message" href="/signing" />
+    <View className="flex-1 justify-between m-10">
+
+      <View>
+        <Text>Welcome to the Tholos Mobile Challenge!</Text>
+        <Text>{pub}</Text>
+        <StatusBar style="auto" />
+      </View>
+
+      <View className='flex justify-center items-center'>
+        <NavButton title="Create Wallet" href="/wallet" />
+        <NavButton title="Sign Message" href="/signing" />
+      </View>
     </View>
   );
 }

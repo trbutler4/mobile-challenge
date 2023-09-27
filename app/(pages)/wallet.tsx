@@ -3,9 +3,15 @@ import NavButton from '../../components/NavButton'
 
 export default function WalletPage() {
     return (
-        <View>
-            <Text>Wallet Page</Text>
-            <NavButton href='/' title='Go Home' />
+        <View className="flex-1 justify-between m-10">
+
+            <View className='flex justify-center items-center'>
+                <Text>Wallet Page</Text>
+            </View>
+
+            <View className='flex justify-center items-center'>
+                <NavButton href='/' title='Go Home' />
+            </View>
         </View>
     )
 }
