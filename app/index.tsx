@@ -6,18 +6,22 @@ import * as SecureStore from 'expo-secure-store'
 
 export default function App() {
   const [walletExists, setWalletExists] = useState<boolean>(false)
+  const [address, setAddress] = useState<`0x${string}` | undefined>()
 
-  async function loadPrivateKey() {
-    let result = await SecureStore.getItemAsync('PRIVATE_KEY')
+  async function loadWallet() {
+    const result = await SecureStore.getItemAsync('WALLET')
+    const parsed_result = JSON.parse(result)
     if (result) {
       setWalletExists(true)
+      setAddress(parsed_result.address)
     } else {
       setWalletExists(false)
+      setAddress(undefined)
     }
   }
 
   useEffect(() => {
-    loadPrivateKey()
+    loadWallet()
   }, [])
 
   return (
@@ -25,7 +29,12 @@ export default function App() {
       <StatusBar style="auto" />
       <Text>Welcome to the Tholos Mobile Challenge!</Text>
       <View>
-        {walletExists ? <Text>Wallet Found</Text> : <Text>No wallet found, please create one to continue</Text>}
+        {walletExists ? 
+          <>
+          <Text className='text-center'>Wallet Found</Text> 
+          <Text>{address}</Text>
+          </>
+          : <Text>No wallet found, please create one to continue</Text>}
       </View>
       <View>
         {walletExists ? <NavButton title="Sign Message" href="/signing" /> : <NavButton title="Create Wallet" href="/wallet" />}

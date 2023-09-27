@@ -8,7 +8,6 @@ import * as SecureStore from 'expo-secure-store'
 
 export default function WalletPage() {
     const [publicKey, setPublicKey] = useState<string | undefined>()
-    const [address, setAddress] = useState<`0x${string}` | undefined>()
     const [privateKey, setPrivateKey] = useState<string | undefined>()
 
     useEffect(() => {
@@ -48,16 +47,20 @@ export default function WalletPage() {
         }
         const checksum_address = `0x${address}`
 
-        // save private key to secure storage 
-        savePrivateKey(priv)
+        // save wallet info to secure storage
+        saveWallet(priv, pub, checksum_address as `0x${string}`)
       
         setPublicKey(pub)
         setPrivateKey(priv)
-        setAddress(checksum_address as `0x${string}`)
     }
 
-    async function savePrivateKey(privateKey: string) {
-        await SecureStore.setItemAsync('PRIVATE_KEY', privateKey)
+    async function saveWallet(privateKey: string, publicKey: string, address: `0x${string}`) {
+        const wallet_data = {
+            private_key: privateKey,
+            public_ket: publicKey,
+            address: address
+        }
+        await SecureStore.setItemAsync('WALLET', JSON.stringify(wallet_data))
     }
 
     return (
