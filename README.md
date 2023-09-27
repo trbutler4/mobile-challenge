@@ -1,5 +1,5 @@
 ## TODO:
-- [] ability to create wallet 
+- [x] ability to create wallet 
 - [] ability to sign a message using that wallets private key 
 - [] store the private key in encrypted storage 
 - [] show the ETH wallet address of the wallet on the home screen 

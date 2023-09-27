@@ -1,10 +1,24 @@
 import { StatusBar } from 'expo-status-bar';
 import { Text, View } from 'react-native';
 import NavButton from '../components/NavButton';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import * as SecureStore from 'expo-secure-store'
 
 export default function App() {
   const [walletExists, setWalletExists] = useState<boolean>(false)
+
+  async function loadPrivateKey() {
+    let result = await SecureStore.getItemAsync('PRIVATE_KEY')
+    if (result) {
+      setWalletExists(true)
+    } else {
+      setWalletExists(false)
+    }
+  }
+
+  useEffect(() => {
+    loadPrivateKey()
+  }, [])
 
   return (
     <View className="flex-1 justify-between items-center m-10">
