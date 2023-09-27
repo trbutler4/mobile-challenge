@@ -5,11 +5,11 @@ export default function SignaturePage() {
     return (
         <View className="flex-1 justify-between m-10">
 
-            <View className="flex justify-center items-center">
+            <View>
                 <Text>Show Signature Page</Text>
             </View>
 
-            <View className="flex items-center justify-center">
+            <View>
                 <NavButton title="Go Home" href="/" />
             </View>
 

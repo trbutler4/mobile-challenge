@@ -6,15 +6,13 @@ export default function SigningPage() {
         <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
             <KeyboardAvoidingView 
                 behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-                className="flex-1 justify-between m-10"
+                className="flex-1 justify-between items-center m-10"
             >
-                <View className="flex justify-center items-center">
+                <View>
                     <Text>Signing Page</Text>
                 </View>
-
-                <View className="flex items-center justify-center">
+                <View>
                     <Text className="m-2">Enter Message</Text>
-
                     <TextInput 
                         className="border w-64 h-32"
                         editable
