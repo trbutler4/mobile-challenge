@@ -37,7 +37,7 @@ export function createWallet() {
     return { public_key: pubNoPrefix, private_key: priv, address: checksum_address }
 }
 
-export async function signMessage(message: string, private_key: string) {
+export function signMessage(message: string, private_key: string) {
     // get key pair from private key
     const keyPair = ec.keyFromPrivate(private_key, 'hex')
 
@@ -45,7 +45,7 @@ export async function signMessage(message: string, private_key: string) {
     const messageHash = keccak256(Buffer.from(message, 'utf-8'))
 
     // sign the hash with the private key 
-    const signature = keyPair.sign(messageHash)
+    const signature = keyPair.sign(messageHash).toDER('hex')
 
-    return {message_hash: messageHash, signature: signature}  
+    return {message_hash: messageHash, signature: `0x${signature}`}  
 }

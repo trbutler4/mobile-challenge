@@ -1,7 +1,32 @@
-import { View, KeyboardAvoidingView, Text, TextInput, Platform, Keyboard, TouchableWithoutFeedback } from "react-native"
+import { View, Button, KeyboardAvoidingView, Text, TextInput, Platform, Keyboard, TouchableWithoutFeedback } from "react-native"
 import NavButton from "../../components/NavButton"
+import { loadWallet } from "../utils/storage"
+import { useState } from "react"
+import { signMessage } from "../utils/crypto"
+import { router } from "expo-router"
 
 export default function SigningPage() {
+    const [message, setMessage] = useState<string>("")
+
+    async function signMessageInput() {
+        // early return if message is blank
+        if(message.length == 0) {
+            alert("please enter a message to sign")
+            return
+        }
+        // load private key from secure storage 
+        const wallet = await loadWallet()
+
+        // sign message with private key 
+        const result = signMessage(message, wallet.private_key)
+        if (result) {
+            // redirect and pass signature to signature page 
+            router.replace({pathname: "/screens/[signature]", params: {signature: result.signature}})
+        } else {
+            alert("Error trying to sign message")
+        }
+    }
+
     return (
         <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
             <KeyboardAvoidingView 
@@ -23,8 +48,14 @@ export default function SigningPage() {
                         returnKeyType="done"
                         onSubmitEditing={() => Keyboard.dismiss()}
                         blurOnSubmit
+                        onChangeText={setMessage}
                     />
-                    <NavButton title="Sign" href="/screens/signature" />
+                </View>
+                <View>
+                    <View className="m-2 w-64">
+                        <Button title="Sign" onPress={signMessageInput} />
+                    </View>
+                    <NavButton href="/" title="Go Home" />
                 </View>
             </KeyboardAvoidingView>
         </TouchableWithoutFeedback>
