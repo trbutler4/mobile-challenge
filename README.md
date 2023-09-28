@@ -1,6 +1,6 @@
 ## TODO:
 - [x] ability to create wallet 
-- [] ability to sign a message using that wallets private key 
+- [x] ability to sign a message using that wallets private key 
 - [x] store the private key in encrypted storage 
     - [x] android
     - [] ios 
