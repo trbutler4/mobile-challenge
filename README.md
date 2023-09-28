@@ -18,3 +18,14 @@
 
 ## WIREFRAME
 ![wireframe](/docs/app-wireframe.png)
+
+## RUNNING THE APP 
+run ```npm start``` to start the expo server. From there, either open an emulator or scan the sq code to view the app on your device.
+
+The emulators for ios and android can also be started directly by runniung 
+```npm run android``` or ```npm run ios```
+
+The cache can be cleared by passing the ```--clear``` flag
+
+## TESTS 
+unit tests are included using jest and can be run using ```npm test```
