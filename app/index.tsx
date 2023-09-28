@@ -36,7 +36,7 @@ export default function App() {
           : <Text>No wallet found, please create one to continue</Text>}
       </View>
       <View>
-        {walletExists ? <NavButton title="Sign Message" href="/signing" /> : <NavButton title="Create Wallet" href="/wallet" />}
+        {walletExists ? <NavButton title="Sign Message" href="/screens/signing" /> : <NavButton title="Create Wallet" href="/screens/wallet" />}
       </View>
     </View>
   );

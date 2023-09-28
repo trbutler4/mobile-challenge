@@ -24,7 +24,7 @@ export default function SigningPage() {
                         onSubmitEditing={() => Keyboard.dismiss()}
                         blurOnSubmit
                     />
-                    <NavButton title="Sign" href="/signature" />
+                    <NavButton title="Sign" href="/screens/signature" />
                 </View>
             </KeyboardAvoidingView>
         </TouchableWithoutFeedback>

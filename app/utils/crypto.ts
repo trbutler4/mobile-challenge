@@ -35,5 +35,5 @@ export function createWallet() {
     }
     const checksum_address = `0x${address}`
 
-    return { public_key: pub, private_key: priv, address: checksum_address }
+    return { public_key: pubNoPrefix, private_key: priv, address: checksum_address }
 }
