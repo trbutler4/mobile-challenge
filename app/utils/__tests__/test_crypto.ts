@@ -1,4 +1,6 @@
-import { createWallet } from '../utils/crypto';
+import { createWallet, signMessage } from '../crypto';
+import EC from 'elliptic-expo/lib/elliptic/ec';
+const ec = new EC('secp256k1')
 
 describe('createWallet', () => {
   it('should generate a wallet with valid public and private keys', () => {
@@ -21,3 +23,15 @@ describe('createWallet', () => {
     expect(wallet.address).toBe(wallet.address.toLowerCase());
   });
 });
+
+describe('signMessage', () => {
+  it('should return a valid signature', async () => {
+    const wallet = createWallet();
+    const message = "test message";
+
+    const result = await signMessage(message, wallet.private_key)
+
+    const keyPair = ec.keyFromPrivate(wallet.private_key)
+    expect(keyPair.verify(result.message_hash, result.signature)).toBe(true)
+  })
+})

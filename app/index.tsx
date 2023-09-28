@@ -2,7 +2,6 @@ import { StatusBar } from 'expo-status-bar';
 import { Text, View } from 'react-native';
 import NavButton from '../components/NavButton';
 import { useEffect, useState } from 'react';
-import * as SecureStore from 'expo-secure-store'
 import { loadWallet } from './utils/storage';
 
 export default function App() {

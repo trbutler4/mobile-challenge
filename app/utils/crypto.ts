@@ -1,10 +1,9 @@
 import { keccak256 } from 'js-sha3';
 import { Buffer } from 'buffer';
 import EC from 'elliptic-expo/lib/elliptic/ec';
+const ec = new EC('secp256k1')
 
 export function createWallet() {
-    const ec = new EC('secp256k1')
-
     //Generate a new key pair
     const keyPair = ec.genKeyPair()
 
@@ -36,4 +35,17 @@ export function createWallet() {
     const checksum_address = `0x${address}`
 
     return { public_key: pubNoPrefix, private_key: priv, address: checksum_address }
+}
+
+export async function signMessage(message: string, private_key: string) {
+    // get key pair from private key
+    const keyPair = ec.keyFromPrivate(private_key, 'hex')
+
+    // create hash of the meassge 
+    const messageHash = keccak256(Buffer.from(message, 'utf-8'))
+
+    // sign the hash with the private key 
+    const signature = keyPair.sign(messageHash)
+
+    return {message_hash: messageHash, signature: signature}  
 }
