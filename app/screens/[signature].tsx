@@ -10,7 +10,7 @@ export default function SignaturePage() {
 
             <View>
                 <Text>Message Signed Successfully</Text>
-                <Text>{signature}</Text>
+                <Text>{`0x${signature}`}</Text>
             </View>
 
             <View>

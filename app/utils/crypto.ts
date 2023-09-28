@@ -47,5 +47,5 @@ export function signMessage(message: string, private_key: string) {
     // sign the hash with the private key 
     const signature = keyPair.sign(messageHash).toDER('hex')
 
-    return {message_hash: messageHash, signature: `0x${signature}`}  
+    return {message_hash: messageHash, signature: signature}  
 }
