@@ -23,3 +23,7 @@ export async function loadWallet() {
         return null
     }
 }
+
+export async function deleteWallet() {
+    const result = await SecureStore.deleteItemAsync(WALLET)
+}

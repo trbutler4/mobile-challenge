@@ -26,9 +26,20 @@ export default function WalletPage() {
     return (
         <View className="flex-1 justify-between items-center m-10">
             <View>
-                <Text className='text-center text-lg font-bold m-2'>Wallet Created</Text>
-                {publicKey && <Text>Public Key: {publicKey}</Text>}
-                {privateKey && <Text>Private Key: {privateKey}</Text>}
+                <Text className='text-center text-lg font-bold p-4'>Wallet Created!</Text>
+                {publicKey && 
+                    <Text>
+                        <Text className='font-bold'>Public Key: </Text>
+                        {publicKey}
+                    </Text>
+                }
+
+                {privateKey && 
+                    <Text>
+                        <Text className='font-bold'>Private Key: </Text> 
+                        {privateKey}
+                    </Text>
+                }
             </View>
             <View>
                 <NavButton href='/' title='Go Home' />

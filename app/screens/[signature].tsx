@@ -9,8 +9,11 @@ export default function SignaturePage() {
         <View className="flex-1 justify-between items-center m-10">
 
             <View>
-                <Text>Message Signed Successfully</Text>
-                <Text>{`0x${signature}`}</Text>
+                <Text className='text-center font-bold text-lg p-4'>Message Signed Successfully!</Text>
+                <Text>
+                    <Text className='font-bold'>Signature: </Text>
+                    {`0x${signature}`}
+                </Text>
             </View>
 
             <View>

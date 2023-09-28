@@ -1,8 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
-import { Text, View } from 'react-native';
+import { Text, View, Button } from 'react-native';
 import NavButton from '../components/NavButton';
 import { useEffect, useState } from 'react';
-import { loadWallet } from './utils/storage';
+import { loadWallet, deleteWallet } from './utils/storage';
+import { router } from 'expo-router';
 
 export default function App() {
   const [walletExists, setWalletExists] = useState<boolean>(false)
@@ -22,20 +23,36 @@ export default function App() {
     .catch((e) => console.error(e))
   }, [])
 
+  function handleDeleteWallet() {
+    deleteWallet().then(() => {
+      setWalletExists(false)
+      setAddress(undefined)
+    })
+  }
+
   return (
     <View className="flex-1 justify-between items-center m-10">
       <StatusBar style="auto" />
-      <Text>Welcome to the Tholos Mobile Challenge!</Text>
+      <Text className='text-lg font-bold'>Mobile Challenge Submission</Text>
       <View>
         {walletExists ? 
           <>
-          <Text className='text-center'>Wallet Found</Text> 
-          <Text>{address}</Text>
+          <Text>
+            <Text className='font-bold'>Address: </Text> 
+            {address}
+          </Text>
           </>
           : <Text>No wallet found, please create one to continue</Text>}
       </View>
       <View>
-        {walletExists ? <NavButton title="Sign Message" href="/screens/signing" /> : <NavButton title="Create Wallet" href="/screens/wallet" />}
+        {walletExists ? 
+          <>
+          <NavButton title="Sign Message" href="/screens/signing" /> 
+          <View className='w-64 m-2'>
+            <Button title='Delete Wallet' onPress={handleDeleteWallet} />
+          </View>
+          </>
+          : <NavButton title="Create Wallet" href="/screens/wallet" />}
       </View>
     </View>
   );
