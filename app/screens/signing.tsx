@@ -38,7 +38,7 @@ export default function SigningPage() {
                 </View>
                 <View className="flex justify-center items-center">
                     <TextInput 
-                        className="border w-64 h-32 mb-8"
+                        className="border rounded-lg w-64 h-32 mb-8 p-2"
                         editable
                         multiline
                         numberOfLines={5}

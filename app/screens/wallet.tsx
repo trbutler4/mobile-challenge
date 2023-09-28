@@ -7,8 +7,11 @@ import { saveWallet } from '../utils/storage';
 export default function WalletPage() {
     const [publicKey, setPublicKey] = useState<string | undefined>()
     const [privateKey, setPrivateKey] = useState<string | undefined>()
+    const [created, setCreated] = useState<boolean>(false)
 
     useEffect(() => {
+        setCreated(false)
+
         // generate a wallet
         const wallet = createWallet()
 
@@ -17,28 +20,30 @@ export default function WalletPage() {
 
         // save wallet information to secure storage 
         saveWallet(wallet.private_key, wallet.public_key, wallet.address as `0x${string}`)
-        .then(() => console.log('wallet generated'))
-        .catch((e) => console.error(e))
-
+        .then(() => {
+            setCreated(true)
+        })
+        .catch((e) => {
+            alert(`Error saving wallet: ${e}`)
+        })
     }, [])
-
 
     return (
         <View className="flex-1 justify-between items-center m-10">
+            <Text className='text-center text-lg font-bold p-4'>Wallet Created!</Text>
             <View>
-                <Text className='text-center text-lg font-bold p-4'>Wallet Created!</Text>
-                {publicKey && 
-                    <Text>
+                {created ?
+                    <>
+                    <Text className='mb-4'>
                         <Text className='font-bold'>Public Key: </Text>
                         {publicKey}
                     </Text>
-                }
-
-                {privateKey && 
                     <Text>
                         <Text className='font-bold'>Private Key: </Text> 
                         {privateKey}
                     </Text>
+                    </> 
+                    : <Text>Creating wallet...</Text>
                 }
             </View>
             <View>
