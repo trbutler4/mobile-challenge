@@ -3,25 +3,24 @@ import { Text, View } from 'react-native';
 import NavButton from '../components/NavButton';
 import { useEffect, useState } from 'react';
 import * as SecureStore from 'expo-secure-store'
+import { loadWallet } from './utils/storage';
 
 export default function App() {
   const [walletExists, setWalletExists] = useState<boolean>(false)
   const [address, setAddress] = useState<`0x${string}` | undefined>()
 
-  async function loadWallet() {
-    const result = await SecureStore.getItemAsync('WALLET')
-    const parsed_result = JSON.parse(result)
-    if (result) {
-      setWalletExists(true)
-      setAddress(parsed_result.address)
-    } else {
-      setWalletExists(false)
-      setAddress(undefined)
-    }
-  }
-
   useEffect(() => {
     loadWallet()
+    .then((wallet) => {
+      if (wallet) {
+        setWalletExists(true)
+        setAddress(wallet.address)
+      } else {
+        setWalletExists(false)
+        setAddress(undefined)
+      }
+    })
+    .catch((e) => console.error(e))
   }, [])
 
   return (
