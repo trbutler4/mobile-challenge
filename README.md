@@ -3,11 +3,10 @@
 - [x] ability to sign a message using that wallets private key 
 - [x] store the private key in encrypted storage 
     - [x] android
-    - [] ios 
+    - [x] ios 
 - [x] show the ETH wallet address of the wallet on the home screen 
 - [] sign an ethereum transaction 
-    - RLP package included in package.json
-
+- [] make it look good
 ## NOTES: 
 - eliptic library to get a public key: https://github.com/enyalabs/elliptic-expo
 - encrypted storage: https://docs.expo.dev/versions/latest/sdk/securestore/
