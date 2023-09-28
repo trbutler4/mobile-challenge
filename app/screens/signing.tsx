@@ -34,12 +34,11 @@ export default function SigningPage() {
                 className="flex-1 justify-between items-center m-10"
             >
                 <View>
-                    <Text>Signing Page</Text>
+                    <Text className="font-bold text-lg p-4">Enter Message to Sign</Text>
                 </View>
-                <View>
-                    <Text className="m-2">Enter Message</Text>
+                <View className="flex justify-center items-center">
                     <TextInput 
-                        className="border w-64 h-32"
+                        className="border w-64 h-32 mb-8"
                         editable
                         multiline
                         numberOfLines={5}
@@ -50,8 +49,6 @@ export default function SigningPage() {
                         blurOnSubmit
                         onChangeText={setMessage}
                     />
-                </View>
-                <View>
                     <View className="m-2 w-64">
                         <Button title="Sign" onPress={signMessageInput} />
                     </View>
