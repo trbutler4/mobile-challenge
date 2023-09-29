@@ -61,9 +61,7 @@ export default function SignMessageScreen() {
             blurOnSubmit
             onChangeText={setMessage}
           />
-          <View className="m-2 w-64">
-            <Button title="Sign" onPress={signMessageInput} />
-          </View>
+          <CustomButton title = "Sign" onPress={signMessageInput} />
           <CustomButton title="Go Home" onPress={() => router.replace("/")} />
         </View>
       </KeyboardAvoidingView>
