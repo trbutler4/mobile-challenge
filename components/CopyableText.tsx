@@ -9,6 +9,7 @@ export default function CopyableText(props: CopyableTextProps) {
 
     function handleCopy() {
         Clipboard.setString(props.textToCopy)
+        alert(`Copied: ${props.textToCopy}`)
     }
     return (
         <SafeAreaView className="bg-slate-200 rounded-md">
