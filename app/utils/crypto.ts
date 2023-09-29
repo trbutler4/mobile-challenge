@@ -69,22 +69,24 @@ export function signTransaction(private_key: string, transaction: Transaction) {
     }
 
     // RLP encoding the signed transaction 
-    const encodedSignedTx = RLP.encode([
+    const rawSignedTransaction = [
         signedTransaction.from,
         signedTransaction.recipient,
-        signedTransaction.gasLimit,
-        signedTransaction.maxFeePerGas,
-        signedTransaction.maxPriorityFeePerGas,
-        signedTransaction.nonce,
-        signedTransaction.value,
-        signedTransaction.v,
-        parseInt(signedTransaction.r),
-        parseInt(signedTransaction.s)
-    ])
+        '0x'+parseInt(signedTransaction.gasLimit, 10).toString(16),
+        '0x'+parseInt(signedTransaction.maxFeePerGas, 10).toString(16),
+        '0x'+parseInt(signedTransaction.maxPriorityFeePerGas, 10).toString(16),
+        '0x'+parseInt(signedTransaction.nonce, 10).toString(16),
+        '0x'+parseInt(signedTransaction.value, 10).toString(16),
+        '0x'+parseInt(signedTransaction.v, 10).toString(16),
+        '0x'+signedTransaction.r,
+        '0x'+signedTransaction.s
+    ]
+    const encodedSignedTx = RLP.encode(rawSignedTransaction)
 
     return { 
         raw: '0x' + Buffer.from(encodedSignedTx).toString('hex'), 
         tx: signedTransaction,
-        txDER: signature.toDER('hex') 
+        txDER: signature.toDER('hex'),
+        txHash: transactionHash
     }
 }

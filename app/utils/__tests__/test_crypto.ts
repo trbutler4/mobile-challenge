@@ -1,5 +1,7 @@
-import { createWallet, signMessage } from '../crypto';
+import { createWallet, signMessage, signTransaction } from '../crypto';
 import EC from 'elliptic-expo/lib/elliptic/ec';
+import RLP from 'rlp';
+import assert from 'assert'
 const ec = new EC('secp256k1')
 
 describe('createWallet', () => {
@@ -25,13 +27,54 @@ describe('createWallet', () => {
 });
 
 describe('signMessage', () => {
-  it('should return a valid signature', async () => {
+  it('should return a valid signature', () => {
     const wallet = createWallet();
     const message = "test message";
 
-    const result = await signMessage(message, wallet.private_key)
+    const result = signMessage(message, wallet.private_key)
 
     const keyPair = ec.keyFromPrivate(wallet.private_key)
     expect(keyPair.verify(result.message_hash, result.signature)).toBe(true)
+  })
+})
+
+describe('signTransaction', () => {
+  it('should return a valid signature', () => {
+    const wallet = createWallet()
+
+    const transaction: Transaction = {
+      from: wallet.address,
+      recipient: '0xEA674fdDe714fd979de3EdF0F56AA9716B898ec8',
+      gasLimit: 21000,
+      maxFeePerGas: 300,
+      maxPriorityFeePerGas: 10,
+      nonce: 0,
+      value: 1000000000000
+    }
+
+    const result = signTransaction(wallet.private_key, transaction)
+
+    const keyPair = ec.keyFromPrivate(wallet.private_key)
+    expect(keyPair.verify(result.txHash, result.txDER)).toBe(true)
+  })
+
+  it('should return a valid RLP encoded transaction', () => {
+    const wallet = createWallet()
+
+    const transaction: Transaction = {
+      from: wallet.address,
+      recipient: '0xEA674fdDe714fd979de3EdF0F56AA9716B898ec8',
+      gasLimit: 21000,
+      maxFeePerGas: 300,
+      maxPriorityFeePerGas: 10,
+      nonce: 0,
+      value: 1000000000000
+    }
+    const result = signTransaction(wallet.private_key, transaction)
+
+    // the first decoded value should be equal to the wallet address
+    const decoded = RLP.decode(result.raw)
+    const decodedSender = Array.from(decoded[0] as Uint8Array).map(byte => byte.toString(16).padStart(2, '0')).join('');
+    expect('0x'+decodedSender).toEqual(wallet.address)
   })
 })
