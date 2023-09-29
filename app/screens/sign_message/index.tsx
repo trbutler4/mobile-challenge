@@ -60,7 +60,10 @@ export default function SignMessageScreen() {
             onSubmitEditing={() => Keyboard.dismiss()}
             blurOnSubmit
             onChangeText={setMessage}
+            placeholder="Hello World"
           />
+        </View>
+        <View>
           <CustomButton title="Sign" onPress={signMessageInput} />
           <CustomButton title="Go Home" onPress={() => router.replace("/")} />
         </View>
