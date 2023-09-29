@@ -50,7 +50,7 @@ export default function SignTransactionScreen() {
         <Text className="font-bold text-lg p-4">Signing Transaction Below</Text>
       </View>
       <View>
-        <Text className="text-center font-bold p-2">Transaction</Text>
+        <Text className="text-center font-bold p-2 text-lg">Transaction</Text>
         <Text>
           <Text className="font-bold">From: </Text>
           {transaction.from}

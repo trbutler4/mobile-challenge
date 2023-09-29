@@ -1,9 +1,10 @@
 import { StatusBar } from "expo-status-bar";
-import { Text, View, Button } from "react-native";
+import { Text, View, TouchableOpacity,  } from "react-native";
 import { useEffect, useState } from "react";
 import { loadWallet, deleteWallet } from "./utils/storage";
 import CustomButton from "../components/CustomButton";
 import { router } from "expo-router";
+import CopyableText from "../components/CopyableText";
 
 export default function App() {
   const [walletExists, setWalletExists] = useState<boolean>(false);
@@ -39,12 +40,10 @@ export default function App() {
       </View>
       <View>
         {walletExists ? (
-          <>
-            <Text selectable={true}>
+          <View className="flex flex-row">
               <Text className="font-bold">Address: </Text>
-              {address}
-            </Text>
-          </>
+              <CopyableText textToCopy={address} textToDisplay={`${address?.slice(0,8)}...${address?.slice(-8)}`}/>
+          </View>
         ) : (
           <Text>No wallet found, please create one to continue</Text>
         )}

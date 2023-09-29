@@ -1,6 +1,7 @@
 import { View, Text } from "react-native";
 import { router, useLocalSearchParams } from "expo-router";
 import CustomButton from "../../../components/CustomButton";
+import CopyableText from "../../../components/CopyableText";
 
 export default function MessageSignatureScreen() {
   const { signature } = useLocalSearchParams();
@@ -11,10 +12,10 @@ export default function MessageSignatureScreen() {
         Message Signed Successfully!
       </Text>
       <View>
-        <Text selectable={true}>
+        <View className="flex flex-row">
           <Text className="font-bold">Signature: </Text>
-          {`0x${signature}`}
-        </Text>
+          <CopyableText textToCopy={`0x${signature}`} textToDisplay={`0x${signature.slice(0,8)} ... ${signature.slice(-8)}`} />
+        </View>
       </View>
 
       <View>
