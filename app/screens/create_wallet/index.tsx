@@ -4,6 +4,7 @@ import { createWallet } from "../../utils/crypto";
 import { saveWallet } from "../../utils/storage";
 import CustomButton from "../../../components/CustomButton";
 import { router } from "expo-router";
+import CopyableText from "../../../components/CopyableText";
 
 export default function CreateWalletScreen() {
   const [publicKey, setPublicKey] = useState<string | undefined>();
@@ -39,18 +40,25 @@ export default function CreateWalletScreen() {
       <View>
         {created ? (
           <>
-            <Text className="mb-4">
-              <Text selectable={true} className="font-bold">
-                Public Key:{" "}
-              </Text>
-              {publicKey}
-            </Text>
-            <Text>
-              <Text selectable={true} className="font-bold">
-                Private Key:{" "}
-              </Text>
-              {privateKey}
-            </Text>
+            <View className="flex flex-row mb-6">
+              <Text className="font-bold">Public Key: </Text>
+              <CopyableText
+                textToCopy={publicKey}
+                textToDisplay={`${publicKey.slice(0, 8)} ... ${publicKey.slice(
+                  -8,
+                )}`}
+              />
+            </View>
+            <View className="flex flex-row">
+              <Text className="font-bold">Private Key: </Text>
+              <CopyableText
+                textToCopy={privateKey}
+                textToDisplay={`${privateKey.slice(
+                  0,
+                  8,
+                )} ... ${privateKey.slice(-8)}`}
+              />
+            </View>
           </>
         ) : (
           <Text>Creating wallet...</Text>
