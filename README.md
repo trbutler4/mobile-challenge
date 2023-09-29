@@ -7,6 +7,7 @@
 - [x] show the ETH wallet address of the wallet on the home screen 
 - [] sign an ethereum transaction 
 - [] make it look good
+
 ## NOTES: 
 - eliptic library to get a public key: https://github.com/enyalabs/elliptic-expo
 - encrypted storage: https://docs.expo.dev/versions/latest/sdk/securestore/
@@ -19,7 +20,7 @@
 ![wireframe](/docs/app-wireframe.png)
 
 ## RUNNING THE APP 
-run ```npm start``` to start the expo server. From there, either open an emulator or scan the sq code to view the app on your device.
+run ```npm start``` to start the expo server. From there, either open an emulator or scan the QR code in the terminal output to view the app on your device.
 
 The emulators for ios and android can also be started directly by runniung 
 ```npm run android``` or ```npm run ios```
