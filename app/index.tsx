@@ -33,7 +33,10 @@ export default function App() {
   return (
     <View className="flex-1 justify-between items-center m-10">
       <StatusBar style="auto" />
-      <Text className="text-lg font-bold p-4">Mobile Challenge Submission</Text>
+      <View>
+        <Text className="text-lg font-bold p-4 text-center">Mobile Challenge Submission</Text>
+        <Text className="text-xs text-center">Created By Thomas Butler</Text>
+      </View>
       <View>
         {walletExists ? (
           <>
