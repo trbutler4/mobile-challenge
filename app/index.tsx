@@ -49,9 +49,9 @@ export default function App() {
       <View>
         {walletExists ? (
           <>
-            <CustomButton 
-              title="Sign Message" 
-              onPress={() => router.replace("/screens/sign_message")} 
+            <CustomButton
+              title="Sign Message"
+              onPress={() => router.replace("/screens/sign_message")}
             />
             <CustomButton
               title="Sign Transaction"
@@ -60,7 +60,10 @@ export default function App() {
             <CustomButton title="Delete Wallet" onPress={handleDeleteWallet} />
           </>
         ) : (
-          <CustomButton title="Create Wallet" onPress={() => router.replace("/screens/create_wallet")} />
+          <CustomButton
+            title="Create Wallet"
+            onPress={() => router.replace("/screens/create_wallet")}
+          />
         )}
       </View>
     </View>
