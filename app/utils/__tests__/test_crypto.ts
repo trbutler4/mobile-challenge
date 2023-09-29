@@ -1,7 +1,6 @@
 import { createWallet, signMessage, signTransaction } from '../crypto';
 import EC from 'elliptic-expo/lib/elliptic/ec';
 import RLP from 'rlp';
-import assert from 'assert'
 const ec = new EC('secp256k1')
 
 describe('createWallet', () => {
