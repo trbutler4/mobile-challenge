@@ -3,7 +3,6 @@ import { Text, View, Button } from 'react-native';
 import NavButton from '../components/NavButton';
 import { useEffect, useState } from 'react';
 import { loadWallet, deleteWallet } from './utils/storage';
-import { router } from 'expo-router';
 
 export default function App() {
   const [walletExists, setWalletExists] = useState<boolean>(false)
@@ -47,12 +46,13 @@ export default function App() {
       <View>
         {walletExists ? 
           <>
-          <NavButton title="Sign Message" href="/screens/signing" /> 
+          <NavButton title="Sign Message" href="/screens/sign_message" /> 
+          <NavButton title="Sign Transaction" href="/screens/sign_transaction" /> 
           <View className='w-64 m-2'>
             <Button title='Delete Wallet' onPress={handleDeleteWallet} />
           </View>
           </>
-          : <NavButton title="Create Wallet" href="/screens/wallet" />}
+          : <NavButton title="Create Wallet" href="/screens/create_wallet" />}
       </View>
     </View>
   );

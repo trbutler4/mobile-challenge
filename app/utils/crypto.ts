@@ -1,5 +1,6 @@
 import { keccak256 } from 'js-sha3';
 import { Buffer } from 'buffer';
+import RLP from "rlp";
 import EC from 'elliptic-expo/lib/elliptic/ec';
 const ec = new EC('secp256k1')
 
@@ -48,4 +49,42 @@ export function signMessage(message: string, private_key: string) {
     const signature = keyPair.sign(messageHash).toDER('hex')
 
     return {message_hash: messageHash, signature: signature}  
+}
+
+export function signTransaction(private_key: string, transaction: Transaction) {
+    // get key pair from private key
+    const keyPair = ec.keyFromPrivate(private_key, 'hex')
+
+    // create hash of transaction
+    const transactionHash = Buffer.from(keccak256(transaction.toString()), 'hex')
+
+    // sign the transaction hash 
+    const signature = keyPair.sign(transactionHash, private_key)
+
+    const signedTransaction: SignedTransaction = {
+        ...transaction, 
+        v: signature.recoveryParam,
+        r: signature.r,
+        s: signature.s
+    }
+
+    // RLP encoding the signed transaction 
+    const encodedSignedTx = RLP.encode([
+        signedTransaction.from,
+        signedTransaction.recipient,
+        signedTransaction.gasLimit,
+        signedTransaction.maxFeePerGas,
+        signedTransaction.maxPriorityFeePerGas,
+        signedTransaction.nonce,
+        signedTransaction.value,
+        signedTransaction.v,
+        parseInt(signedTransaction.r),
+        parseInt(signedTransaction.s)
+    ])
+
+    return { 
+        raw: '0x' + Buffer.from(encodedSignedTx).toString('hex'), 
+        tx: signedTransaction,
+        txDER: signature.toDER('hex') 
+    }
 }

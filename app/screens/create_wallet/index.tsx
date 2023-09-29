@@ -1,10 +1,10 @@
 import { View, Text } from 'react-native'
-import NavButton from '../../components/NavButton'
+import NavButton from '../../../components/NavButton'
 import { useEffect, useState } from 'react';
-import { createWallet } from '../utils/crypto';
-import { saveWallet } from '../utils/storage';
+import { createWallet } from '../../utils/crypto';
+import { saveWallet } from '../../utils/storage';
 
-export default function WalletPage() {
+export default function CreateWalletScreen() {
     const [publicKey, setPublicKey] = useState<string | undefined>()
     const [privateKey, setPrivateKey] = useState<string | undefined>()
     const [created, setCreated] = useState<boolean>(false)

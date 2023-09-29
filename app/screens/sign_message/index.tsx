@@ -1,11 +1,11 @@
 import { View, Button, KeyboardAvoidingView, Text, TextInput, Platform, Keyboard, TouchableWithoutFeedback } from "react-native"
-import NavButton from "../../components/NavButton"
-import { loadWallet } from "../utils/storage"
+import NavButton from "../../../components/NavButton"
+import { loadWallet } from "../../utils/storage"
 import { useState } from "react"
-import { signMessage } from "../utils/crypto"
+import { signMessage } from "../../utils/crypto"
 import { router } from "expo-router"
 
-export default function SigningPage() {
+export default function SignMessageScreen() {
     const [message, setMessage] = useState<string>("")
 
     async function signMessageInput() {
@@ -21,7 +21,7 @@ export default function SigningPage() {
         const result = signMessage(message, wallet.private_key)
         if (result) {
             // redirect and pass signature to signature page 
-            router.replace({pathname: "/screens/[signature]", params: {signature: result.signature}})
+            router.replace({pathname: "/screens/message_signature/[message_signature]", params: {signature: result.signature}})
         } else {
             alert("Error trying to sign message")
         }

@@ -4,5 +4,6 @@
   "include": [
     "**/*.ts",
     "**/*.tsx",
+    "types"
   ]
 }

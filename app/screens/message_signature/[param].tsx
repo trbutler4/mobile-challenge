@@ -1,8 +1,8 @@
 import { View, Text } from 'react-native'
-import NavButton from '../../components/NavButton'
+import NavButton from '../../../components/NavButton'
 import { useLocalSearchParams } from 'expo-router'
 
-export default function SignaturePage() {
+export default function MessageSignatureScreen() {
     const { signature } = useLocalSearchParams();
 
     return (
