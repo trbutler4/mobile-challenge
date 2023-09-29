@@ -1,4 +1,4 @@
-import { TouchableOpacity, Text, SafeAreaView, Clipboard } from "react-native" // clip board is depracted but is still the thing to use for expo
+import { TouchableOpacity, Text, SafeAreaView, Clipboard, Image} from "react-native" // clip board is depracted but is still the thing to use for expo
 
 interface CopyableTextProps {
     textToCopy: string,
@@ -13,8 +13,9 @@ export default function CopyableText(props: CopyableTextProps) {
     }
     return (
         <SafeAreaView className="bg-slate-200 rounded-md">
-        <TouchableOpacity onPress={handleCopy}>
-            <Text>{props.textToDisplay}</Text>
+        <TouchableOpacity onPress={handleCopy} className="flex flex-row">
+            <Text>{props.textToDisplay} | </Text>
+            <Image source={require("../assets/copy.png")} className="w-3 h-3 mt-1"/>
         </TouchableOpacity>
         </SafeAreaView>
     )
