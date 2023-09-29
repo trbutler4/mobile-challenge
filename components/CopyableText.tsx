@@ -14,8 +14,8 @@ export default function CopyableText(props: CopyableTextProps) {
     return (
         <SafeAreaView className="bg-slate-200 rounded-md">
         <TouchableOpacity onPress={handleCopy} className="flex flex-row">
-            <Text>{props.textToDisplay} | </Text>
-            <Image source={require("../assets/copy.png")} className="w-3 h-3 mt-1"/>
+            <Text>{props.textToDisplay} </Text>
+            <Image source={require("../assets/copy.png")} className="w-3 h-3 mt-[3px]"/>
         </TouchableOpacity>
         </SafeAreaView>
     )
