@@ -14,7 +14,12 @@ export default function MessageSignatureScreen() {
       <View>
         <View className="flex flex-row">
           <Text className="font-bold">Signature: </Text>
-          <CopyableText textToCopy={`0x${signature}`} textToDisplay={`0x${signature.slice(0,8)} ... ${signature.slice(-8)}`} />
+          <CopyableText
+            textToCopy={`0x${signature}`}
+            textToDisplay={`0x${signature.slice(0, 8)} ... ${signature.slice(
+              -8,
+            )}`}
+          />
         </View>
       </View>
 

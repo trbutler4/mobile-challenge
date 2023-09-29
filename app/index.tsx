@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import { Text, View, TouchableOpacity,  } from "react-native";
+import { Text, View, TouchableOpacity } from "react-native";
 import { useEffect, useState } from "react";
 import { loadWallet, deleteWallet } from "./utils/storage";
 import CustomButton from "../components/CustomButton";
@@ -35,14 +35,19 @@ export default function App() {
     <View className="flex-1 justify-between items-center m-10">
       <StatusBar style="auto" />
       <View>
-        <Text className="text-lg font-bold p-4 text-center">Mobile Challenge Submission</Text>
+        <Text className="text-lg font-bold p-4 text-center">
+          Mobile Challenge Submission
+        </Text>
         <Text className="text-xs text-center">Created By Thomas Butler</Text>
       </View>
       <View>
         {walletExists ? (
           <View className="flex flex-row">
-              <Text className="font-bold">Address: </Text>
-              <CopyableText textToCopy={address} textToDisplay={`${address?.slice(0,8)}...${address?.slice(-8)}`}/>
+            <Text className="font-bold">Address: </Text>
+            <CopyableText
+              textToCopy={address}
+              textToDisplay={`${address?.slice(0, 8)}...${address?.slice(-8)}`}
+            />
           </View>
         ) : (
           <Text>No wallet found, please create one to continue</Text>

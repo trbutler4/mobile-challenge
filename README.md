@@ -7,7 +7,7 @@
   - [x] ios
 - [x] show the ETH wallet address of the wallet on the home screen
 - [x] sign an ethereum transaction
-- [] make it look good
+- [x] make it look good
 
 ## NOTES:
 
