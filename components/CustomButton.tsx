@@ -8,7 +8,7 @@ interface CustomButtonProps {
 export default function CustomButton(props: CustomButtonProps) {
   return (
     <TouchableOpacity
-      className="bg-blue-500 p-2 m-2 w-64 rounded"
+      className="bg-blue-500 p-4 m-2 w-64 rounded"
       onPress={props.onPress}
     >
       <Text className="text-white font-bold text-center">{props.title}</Text>
