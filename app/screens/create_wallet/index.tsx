@@ -35,11 +35,11 @@ export default function CreateWalletScreen() {
                 {created ?
                     <>
                     <Text className='mb-4'>
-                        <Text className='font-bold'>Public Key: </Text>
+                        <Text selectable={true} className='font-bold'>Public Key: </Text>
                         {publicKey}
                     </Text>
                     <Text>
-                        <Text className='font-bold'>Private Key: </Text> 
+                        <Text selectable={true} className='font-bold'>Private Key: </Text> 
                         {privateKey}
                     </Text>
                     </> 

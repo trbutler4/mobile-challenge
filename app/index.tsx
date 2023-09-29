@@ -36,7 +36,7 @@ export default function App() {
       <View>
         {walletExists ? 
           <>
-          <Text>
+          <Text selectable={true}>
             <Text className='font-bold'>Address: </Text> 
             {address}
           </Text>
