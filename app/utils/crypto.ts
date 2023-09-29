@@ -17,7 +17,7 @@ export function createWallet() {
 
   // take keccak hash of public key
   const pubNoPrefix = pub.slice(2); // dropping the '04' prefix
-  const keccak = keccak256(Buffer.from(pub, "hex").toString("base64"));
+  const keccak = keccak256(Buffer.from(pub, "hex"));
 
   // address is 0x + last 20 bytes of public key
   let address = keccak.slice(-40);
