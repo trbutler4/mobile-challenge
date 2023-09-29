@@ -1,6 +1,6 @@
 import { View, Text } from "react-native";
-import NavButton from "../../../components/NavButton";
-import { useLocalSearchParams } from "expo-router";
+import { router, useLocalSearchParams } from "expo-router";
+import CustomButton from "../../../components/CustomButton";
 
 export default function MessageSignatureScreen() {
   const { signature } = useLocalSearchParams();
@@ -18,7 +18,7 @@ export default function MessageSignatureScreen() {
       </View>
 
       <View>
-        <NavButton title="Go Home" href="/" />
+        <CustomButton title="Go Home" onPress={() => router.replace("/")} />
       </View>
     </View>
   );

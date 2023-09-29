@@ -8,11 +8,11 @@ import {
   Keyboard,
   TouchableWithoutFeedback,
 } from "react-native";
-import NavButton from "../../../components/NavButton";
 import { loadWallet } from "../../utils/storage";
 import { useState } from "react";
 import { signMessage } from "../../utils/crypto";
 import { router } from "expo-router";
+import CustomButton from "../../../components/CustomButton";
 
 export default function SignMessageScreen() {
   const [message, setMessage] = useState<string>("");
@@ -64,7 +64,7 @@ export default function SignMessageScreen() {
           <View className="m-2 w-64">
             <Button title="Sign" onPress={signMessageInput} />
           </View>
-          <NavButton href="/" title="Go Home" />
+          <CustomButton title="Go Home" onPress={() => router.replace("/")} />
         </View>
       </KeyboardAvoidingView>
     </TouchableWithoutFeedback>

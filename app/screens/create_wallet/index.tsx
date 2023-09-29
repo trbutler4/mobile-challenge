@@ -1,8 +1,9 @@
 import { View, Text } from "react-native";
-import NavButton from "../../../components/NavButton";
 import { useEffect, useState } from "react";
 import { createWallet } from "../../utils/crypto";
 import { saveWallet } from "../../utils/storage";
+import CustomButton from "../../../components/CustomButton";
+import { router } from "expo-router";
 
 export default function CreateWalletScreen() {
   const [publicKey, setPublicKey] = useState<string | undefined>();
@@ -56,7 +57,7 @@ export default function CreateWalletScreen() {
         )}
       </View>
       <View>
-        <NavButton href="/" title="Go Home" />
+        <CustomButton title="Go Home" onPress={() => router.replace("/")} />
       </View>
     </View>
   );

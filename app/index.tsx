@@ -1,8 +1,9 @@
 import { StatusBar } from "expo-status-bar";
 import { Text, View, Button } from "react-native";
-import NavButton from "../components/NavButton";
 import { useEffect, useState } from "react";
 import { loadWallet, deleteWallet } from "./utils/storage";
+import CustomButton from "../components/CustomButton";
+import { router } from "expo-router";
 
 export default function App() {
   const [walletExists, setWalletExists] = useState<boolean>(false);
@@ -48,17 +49,18 @@ export default function App() {
       <View>
         {walletExists ? (
           <>
-            <NavButton title="Sign Message" href="/screens/sign_message" />
-            <NavButton
-              title="Sign Transaction"
-              href="/screens/sign_transaction"
+            <CustomButton 
+              title="Sign Message" 
+              onPress={() => router.replace("/screens/sign_message")} 
             />
-            <View className="w-64 m-2">
-              <Button title="Delete Wallet" onPress={handleDeleteWallet} />
-            </View>
+            <CustomButton
+              title="Sign Transaction"
+              onPress={() => router.replace("/screens/sign_transaction")}
+            />
+            <CustomButton title="Delete Wallet" onPress={handleDeleteWallet} />
           </>
         ) : (
-          <NavButton title="Create Wallet" href="/screens/create_wallet" />
+          <CustomButton title="Create Wallet" onPress={() => router.replace("/screens/create_wallet")} />
         )}
       </View>
     </View>

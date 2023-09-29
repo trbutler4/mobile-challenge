@@ -1,6 +1,7 @@
 import { View, Text } from "react-native";
 import { useLocalSearchParams } from "expo-router";
-import NavButton from "../../../components/NavButton";
+import CustomButton from "../../../components/CustomButton";
+import { router } from "expo-router";
 
 export default function TransactionSignatureScreen() {
   const { signature, rlp } = useLocalSearchParams();
@@ -22,7 +23,7 @@ export default function TransactionSignatureScreen() {
       </View>
 
       <View>
-        <NavButton title="Go Home" href="/" />
+        <CustomButton title="Go Home" onPress={() => router.replace("/")} />
       </View>
     </View>
   );

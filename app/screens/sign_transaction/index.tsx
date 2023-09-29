@@ -1,9 +1,9 @@
 import { View, Text, Button } from "react-native";
-import NavButton from "../../../components/NavButton";
 import { useEffect, useState } from "react";
 import { loadWallet } from "../../utils/storage";
 import { signTransaction } from "../../utils/crypto";
 import { router } from "expo-router";
+import CustomButton from "../../../components/CustomButton";
 
 export default function SignTransactionScreen() {
   const [sender, setSender] = useState<string>();
@@ -81,10 +81,8 @@ export default function SignTransactionScreen() {
         </Text>
       </View>
       <View className="flex justify-center items-center">
-        <View className="m-2 w-64">
-          <Button title="Sign" onPress={handleSignTransaction} />
-        </View>
-        <NavButton href="/" title="Go Home" />
+        <CustomButton title="Sign" onPress={handleSignTransaction} />
+        <CustomButton title="Go Home" onPress={() => router.replace("/")} />
       </View>
     </View>
   );
