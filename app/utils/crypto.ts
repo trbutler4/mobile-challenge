@@ -13,10 +13,9 @@ export function createWallet() {
 
   // Get a public key
   const pubPoint = keyPair.getPublic();
-  const pub = pubPoint.encode("hex");
+  const pub = pubPoint.getX().toString('hex') + pubPoint.getY().toString('hex')
 
   // take keccak hash of public key
-  const pubNoPrefix = pub.slice(2); // dropping the '04' prefix
   const keccak = keccak256(Buffer.from(pub, "hex"));
 
   // address is 0x + last 20 bytes of public key
@@ -36,7 +35,7 @@ export function createWallet() {
   const checksum_address = `0x${address}`;
 
   return {
-    public_key: pubNoPrefix,
+    public_key: pub,
     private_key: priv,
     address: checksum_address,
   };
